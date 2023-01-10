@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+  <!-- Namenode HA Configuration -->
+  <property>
+    <name>dfs.nameservices</name>
+    <value>bigdata-test</value>
+  </property>
+  <property>
+    <name>dfs.ha.namenodes.bigdata-test</name>
+    <value>nn1,nn2</value>
+  </property>
+  <property>
+    <name>dfs.namenode.rpc-address.bigdata-test.nn1</name>
+    <value>longzhou-hdpnn.lz.dscc.99.com:11000</value>
+  </property>
+  <property>
+    <name>dfs.namenode.rpc-address.bigdata-test.nn2</name>
+    <value>longzhou-logstash1.lz.dscc.99.com:11000</value>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address.bigdata-test.nn1</name>
+    <value>longzhou-hdpnn.lz.dscc.99.com:11080</value>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address.bigdata-test.nn2</name>
+    <value>longzhou-logstash1.lz.dscc.99.com:11080</value>
+  </property>
+    <property>
+    <name>dfs.namenode.https-address.bigdata-test.nn1</name>
+    <value>longzhou-hdpnn.lz.dscc.99.com:11880</value>
+  </property>
+  <property>
+    <name>dfs.namenode.https-address.bigdata-test.nn2</name>
+    <value>longzhou-logstash1.lz.dscc.99.com:11880</value>
+  </property>
+    <property>
+    <name>dfs.ha.zkfc.port</name>
+    <value>11819</value>
+  </property>
+  <property>
+    <name>dfs.namenode.shared.edits.dir</name>
+    <value>qjournal://longzhou-logstash1.lz.dscc.99.com:18485;longzhou-es1.lz.dscc.99.com:18485;longzhou-es2.lz.dscc.99.com:18485/bigdata-test</value>
+  </property>
+  <property>
+    <name>dfs.client.failover.proxy.provider.bigdata-test</name>
+    <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+  </property>
+
+  <!-- Namenode Configuration -->
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>/mnt/sdb/hadoop/hdfs/namenode</value>
+  </property>
+  <property>
+    <name>dfs.blocksize</name>
+    <value>268435456</value>
+  </property>
+<property>
+          <name>dfs.webhdfs.enabled</name>
+          <value>true</value>
+</property>
+  <!-- Datanode Configuration -->
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value> /mnt/sdb/hadoop/hdfs/data,
+            /mnt/sdc/hadoop/hdfs/data,
+            /mnt/sdd/hadoop/hdfs/data,
+            /mnt/sde/hadoop/hdfs/data,
+            /mnt/sdf/hadoop/hdfs/data,
+            /mnt/sdg/hadoop/hdfs/data,
+            /mnt/sdh/hadoop/hdfs/data,
+            /mnt/sdi/hadoop/hdfs/data,
+            /mnt/sdj/hadoop/hdfs/data,
+            /mnt/sdk/hadoop/hdfs/data,
+            /mnt/sdl/hadoop/hdfs/data,
+            /mnt/sdm/hadoop/hdfs/data
+    </value>
+  </property>
+  	<property>
+		<name>dfs.datanode.address</name>
+		<value>0.0.0.0:11001</value>
+	</property>
+	<property>
+		<name>dfs.datanode.ipc.address</name>
+		<value>0.0.0.0:11011</value>
+	</property>
+	<property>
+		<name>dfs.datanode.http.address</name>
+		<value>0.0.0.0:11081</value>
+	</property>
+	<property>
+		<name>dfs.datanode.https.address</name>
+		<value>0.0.0.0:11082</value>
+	</property>
+	<property>
+                <name>dfs.replication</name>
+                <value>2</value>
+    </property>
+	
+ <!-- ACLs Configuration -->
+	<property>
+                <name>dfs.permissions.enabled</name>
+                <value>true</value>
+        </property>
+	<property>
+                <name>dfs.namenode.acls.enabled</name>
+                <value>true</value>
+        </property>
+
+  <!-- Automatic Failover Configuration -->
+  <property>
+    <name>dfs.ha.automatic-failover.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>dfs.ha.fencing.methods</name>
+    <value>shell(true)</value>
+  </property>
+
+  <!-- Journal Node Configuration -->
+  <property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value>/mnt/sdb/hadoop/hdfs/journal/node/local/data</value>
+  </property>
+<property>
+<name>dfs.journalnode.http-address</name>
+<value>0.0.0.0:18480</value>
+</property>
+<property>
+<name>dfs.journalnode.https-address</name>
+<value>0.0.0.0:18481</value>
+</property>
+<property>
+<name>dfs.journalnode.rpc-address</name>
+<value>0.0.0.0:18485</value>
+</property>
+<property>
+<name>dfs.qjournal.start-segment.timeout.ms</name>
+<value>80000</value>
+</property>
+<property>
+<name>dfs.qjournal.select-input-streams.timeout.ms</name>
+<value>80000</value>
+</property>
+<property>
+<name>dfs.qjournal.write-txns.timeout.ms</name>
+<value>80000</value>
+</property>
+<!--kerberos configuration-->
+<property>
+ <name>dfs.block.access.token.enable</name>
+ <value>true</value>
+</property>
+<property>
+	<name>dfs.data.transfer.protection</name>
+	<value>integrity</value>
+</property>
+　　<property>
+　　　　<name>dfs.http.policy</name>
+　　　　<value>HTTP_AND_HTTPS</value>
+　　</property>
+　　<property>
+　　　　<name>dfs.https.port</name>
+　　　　<value>11880</value>
+　　</property>
+<property>
+    <name>dfs.namenode.kerberos.principal</name>
+    <value>hadoop/_HOST@LZ.DSCC.99.COM</value>
+</property>
+<property>
+    <name>dfs.namenode.keytab.file</name>
+    <value>/home/zk/krb5keytab/hadoop.keytab</value>
+</property>
+<property>
+    <name>dfs.namenode.kerberos.internal.spnego.principal</name>
+    <value>HTTP/_HOST@LZ.DSCC.99.COM</value>
+</property>
+<property>
+    <name>dfs.namenode.kerberos.internal.spnego.keytab</name>
+    <value>/home/zk/krb5keytab/HTTP.keytab</value>
+</property>
+<property>
+    <name>dfs.web.authentication.kerberos.principal</name>
+    <value>HTTP/_HOST@LZ.DSCC.99.COM</value>
+</property>
+<property>
+    <name>dfs.web.authentication.kerberos.keytab</name>
+    <value>/home/zk/krb5keytab/HTTP.keytab</value>
+</property>
+<property>
+    <name>dfs.datanode.kerberos.principal</name>
+    <value>hadoop/_HOST@LZ.DSCC.99.COM</value>
+</property>
+<property>
+    <name>dfs.datanode.keytab.file</name>
+    <value>/home/zk/krb5keytab/hadoop.keytab</value>
+</property>
+<property>
+    <name>dfs.journalnode.kerberos.principal</name>
+    <value>hadoop/_HOST@LZ.DSCC.99.COM</value>
+</property>
+<property>
+    <name>dfs.journalnode.keytab.file</name>
+    <value>/home/zk/krb5keytab/hadoop.keytab</value>
+</property>
+<property>
+    <name>dfs.journalnode.kerberos.internal.spnego.principal</name>
+    <value>HTTP/_HOST@LZ.DSCC.99.COM</value>
+</property>
+<property>
+    <name>dfs.journalnode.kerberos.internal.spnego.keytab</name>
+    <value>/home/zk/krb5keytab/HTTP.keytab</value>
+</property>
+</configuration>
