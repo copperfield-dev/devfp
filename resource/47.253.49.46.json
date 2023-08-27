@@ -1,0 +1,8 @@
+{
+  "ftp_host": "47.253.49.46",
+  "ftp_username": "cxzx_750822",
+  "ftp_password": "7075f0e4e5a41b79977e9fcf74716d57",
+  "ftp_timeout": 10000,
+  "ftp_local_dir": "/home/wuxin/english-moyu/data",
+  "ftp_block_size": 1048576
+}
